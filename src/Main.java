@@ -12,6 +12,6 @@ class Main {
 
         System.out.print("---------------------------------------------------------\n" + linearOne + "\n---------------------------------------------------------\nEnter a third x-value: ");
         double x = kyx.nextDouble();
-        System.out.println("---------------------------------------------------------\nSolved Coordinate point is: "+ linearOne.printSolvedCoordinates(x));
+        System.out.println("---------------------------------------------------------\n"+ linearOne.printSolvedCoordinates(x));
         }
     }

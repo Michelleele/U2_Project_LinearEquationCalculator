@@ -25,7 +25,7 @@ public class LinearEquation {
         findSlopeNumerator();
         setCalcSlope();
         findYInt();
-        setPrintSlope();
+        setFractionSlope();
         setPrintYInt();
     }
 
@@ -57,29 +57,6 @@ public class LinearEquation {
         return (x < 0);
     }
 
-    public void setPrintSlope() {
-        if (isNeg(calculationSlope)) {
-            printedFractionSlope = printedFractionSlope + " -";
-        }
-        else {
-            printedFractionSlope = printedFractionSlope + " ";
-        }
-        if (isSlopeWholeNumber()) {
-            if (!isSlopeOne()) {
-                printedFractionSlope = printedFractionSlope + (int) calculationSlope;
-            }
-        }
-        else if (isNeg(slopeDenominator) || (isNeg(slopeNumerator) )) {
-            if (isNeg(slopeDenominator)) {
-                slopeDenominator = slopeDenominator * -1;
-            }
-            if (isNeg(slopeNumerator)) {
-                slopeNumerator = slopeNumerator * -1;
-            }
-            printedFractionSlope = printedFractionSlope + slopeNumerator + "/" + slopeDenominator;
-        }
-    }
-
     public void findYInt() {
         yInt = yOne - (calculationSlope * xOne);
     }
@@ -96,8 +73,35 @@ public class LinearEquation {
         }
     }
 
+    public String setPosOrNeg(double x) {
+        if (isNeg(x)) {
+            return " -";
+        }
+        return " ";
+    }
+
+    public void setSlopeNumeratorDenominatorStandard() {
+        if (isNeg(slopeNumerator) && isNeg(slopeDenominator)) {
+            slopeNumerator *= -1;
+            slopeDenominator *= -1;
+        }
+    }
+
+    public void setFractionSlope() {
+        setSlopeNumeratorDenominatorStandard();
+        printedFractionSlope = setPosOrNeg(calculationSlope) + slopeNumerator + "/" + slopeDenominator;
+    }
+
     public String findLinearEquation() {
-        return ("y =" + printedFractionSlope + "x" + printedYInt);
+        if (isSlopeWholeNumber()) {
+            if (isSlopeOne()) {
+                return  ("y =" + setPosOrNeg(calculationSlope) + "x" + printedYInt);
+            }
+            return  ("y =" + setPosOrNeg(calculationSlope) + (int) calculationSlope + "x" + printedYInt);
+        }
+        else {
+            return  ("y =" + printedFractionSlope + "x" + printedYInt);
+        }
     }
 
     public double findDistance() {
