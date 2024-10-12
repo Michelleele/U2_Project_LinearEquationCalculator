@@ -11,7 +11,6 @@ class Main {
 
         //creates a new object using user inputs
         LinearEquation linearOne = new LinearEquation(coordinateOne, coordinateTwo);
-
         //prints out info on the two coordinate points
         System.out.print("---------------------------------------------------------\n" + linearOne + "\n---------------------------------------------------------\nEnter a third x-value: ");
 
